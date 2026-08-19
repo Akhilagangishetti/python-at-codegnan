@@ -1,5 +1,7 @@
 # Data base
-"""
+# import requirements
+from emailsend import singleEmailSend
+'''"""
 users = {
             Account:{
                      'name':Username,
@@ -39,6 +41,11 @@ def withdraw(account:int, withdraw_amount:int)-> str:
     curr_balance = users[account]['balance']
     if curr_balance >= withdraw_amount:
         users[account]['balance'] -= withdraw_amount
+        # send email
+        SingleEmailSend(to_email=users[account['email']],
+                        subject="withdraw Alert",
+                        body=f"{withdraw_amount} withdraw successful and current balance is:{users[account]['balance']}"
+                        )
         return f"{withdraw_amount} withdraw successful and current balance is:{users[account]['balance']}"
     return "Insufficent Balance"
 
@@ -62,7 +69,8 @@ def Ministatement(account:int):
 # Logout Function
 def logout():
     print("Bye Bye buddy, see you later")
-    exit()
+    exit()'''
+
 
 
 # main

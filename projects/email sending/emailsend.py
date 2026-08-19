@@ -1,15 +1,20 @@
 
 
 #import required modules
-import smtplibfrom 
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
+import os
+
+# to load content in .env
+load_dotenv()
 
 # server config parameters
 SMTP_SERVER = "smtp.gmail.com"
 SMPT_PORT = 587
-SENDER_EMAIL = "Your email"
-PASSKEY = "YOU app passkey"
+SENDER_EMAIL = os.getenv('SENDER_EMAIL')
+PASSKEY = os.getenv('SENDER_PASSKEY')
 
 
 def singleEmailSend(to_email:str, subject:str, body:str):
@@ -20,7 +25,7 @@ def singleEmailSend(to_email:str, subject:str, body:str):
     msg.attach(MIMEText(body, 'plain'))
     try:
         # start server
-        server = smtpliB.SMTP(SMTP_SERVER, SMPT_PORT)
+        server = smtplib.SMTP(SMTP_SERVER, SMPT_PORT)
         # start server
         server.starttls()
         #login to server
@@ -35,8 +40,6 @@ def singleEmailSend(to_email:str, subject:str, body:str):
 
 # read inputs
 email = input("Enter Receiver email address:")
-subject = input("Enter enail subject:")
+subject = input("Enter email subject:")
 body = input("Enter email body:")
-print(singleEmailSend(to_email))
-
-
+print(singleEmailSend(to_email=email,subject=subject,body=body))
